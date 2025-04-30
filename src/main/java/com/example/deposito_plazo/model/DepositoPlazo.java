@@ -51,10 +51,9 @@ public class DepositoPlazo {
     public void PrePersist() {
         this.fechaSolicitud = LocalDateTime.now();
         // Calcular fecha de vencimiento
-        this.fechaVencimiento = this.fechaSolicitud.plusMonths(plazoDias);
+        this.fechaVencimiento = this.fechaSolicitud.plusDays(plazoDias);
         this.estado = "activo"; // Estado inicial al crear el depósito
         // Calcular interés ganado
         interesGanado = this.monto.multiply(this.tasaInteres).multiply(new BigDecimal(this.plazoDias)).divide(new BigDecimal(365), 2, RoundingMode.HALF_UP);
-        
     }
 }
